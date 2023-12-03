@@ -1,0 +1,36 @@
+#Rock, paper, scissor game
+import random
+
+def winner(U_C, C_C):
+    # Determine the winner based on user's and computer's Choices
+    if (U_C==C_C):
+        return "Tie!"
+    elif (U_C=="rock" and C_C=="scissor") or (U_C=="paper" and C_C=="rock") or (U_C=="scissor" and C_C=="paper"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+
+# List of valid Choices
+C = ["rock", "paper", "scissor"]
+while True:
+   # Get user input and convert to lowercase for case-insensitivity
+   U_C=input("Choose rock, paper or scissor (or 'stop' to quit): ").lower()
+        
+   # Check if the user wants to stop playing
+   if U_C=='stop':
+     print("Thanks for playing! Goodbye.")
+     break
+   #Check if user input is valid
+   if U_C in C:
+      # Generate a random choice for the computer
+      C_C=random.choice(C)
+            
+      # Display the computer's choice
+      print(f"Computer chose {C_C}.")
+
+      # Determine and display the winner
+      print(winner(U_C, C_C))
+   else:
+      # Invalid input message
+      print("Invalid input. Please choose rock, paper or scissor.")
