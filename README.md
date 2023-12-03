@@ -1,4 +1,5 @@
 # codsoft
+#Random password generator
 import random
 import string
 #defining the random password generator function with length(l)
