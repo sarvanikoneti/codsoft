@@ -1,0 +1,114 @@
+#Contact book
+class Contact:
+    def __init__(self, name, phone_number, email, address):
+        # Constructor to initialize contact details
+        self.name = name
+        self.phone_number = phone_number
+        self.email = email
+        self.address = address
+
+def add_contact(contacts, contact):
+    # Function to add a new contact to the list
+    contacts.append(contact)
+
+def view_contact_list(contacts):
+    # Function to display the list of contacts
+    for contact in contacts:
+        print(contact.name, contact.phone_number, contact.email, contact.address)
+
+def search_contact(contacts, name):
+    # Function to search for a contact by name
+    for contact in contacts:
+        if contact.name == name:
+            return contact
+    return None
+
+def update_contact(contacts, contact):
+    # Function to update a contact in the list
+    index = contacts.index(contact)
+    contacts[index] = contact
+
+def delete_contact(contacts, contact):
+    # Function to delete a contact from the list
+    contacts.remove(contact)
+
+def main():
+    # Main function to run the contact book program
+    contacts = []  # Initialize an empty list to store contacts
+
+    while True:
+        # Display menu options
+        print("What do you want to do?")
+        print("1. Add a contact")
+        print("2. View contact list")
+        print("3. Search for a contact")
+        print("4. Update a contact")
+        print("5. Delete a contact")
+        print("6. Exit")
+
+        choice = input()  # Get user input for the menu choice
+
+        if choice == "1":
+            # Add a new contact
+            name = input("Enter the name of the contact: ")
+            phone_number = input("Enter the phone number of the contact: ")
+            email = input("Enter the email address of the contact: ")
+            address = input("Enter the address of the contact: ")
+
+            contact = Contact(name, phone_number, email, address)
+            add_contact(contacts, contact)
+
+        elif choice == "2":
+            # View the list of contacts
+            view_contact_list(contacts)
+
+        elif choice == "3":
+            # Search for a contact by name
+            name = input("Enter the name of the contact to search for: ")
+            contact = search_contact(contacts, name)
+
+            if contact is not None:
+                print(contact.name, contact.phone_number, contact.email, contact.address)
+            else:
+                print("Contact not found")
+
+        elif choice == "4":
+            # Update a contact's information
+            name = input("Enter the name of the contact to update: ")
+            contact = search_contact(contacts, name)
+
+            if contact is not None:
+                new_phone_number = input("Enter the new phone number: ")
+                new_email = input("Enter the new email address: ")
+                new_address = input("Enter the new address: ")
+
+                # Update the contact's information
+                contact.phone_number = new_phone_number
+                contact.email = new_email
+                contact.address = new_address
+
+                update_contact(contacts, contact)
+            else:
+                print("Contact not found")
+
+        elif choice == "5":
+            # Delete a contact
+            name = input("Enter the name of the contact to delete: ")
+            contact = search_contact(contacts, name)
+
+            if contact is not None:
+                delete_contact(contacts, contact)
+            else:
+                print("Contact not found")
+
+        elif choice == "6":
+            # Exit the program
+            break
+
+        else:
+            # Handle invalid choice
+            print("Invalid choice")
+
+if __name__ == "__main__":
+    # Run the main function if the script is executed
+    main()
